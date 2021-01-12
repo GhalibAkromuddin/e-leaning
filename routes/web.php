@@ -13,6 +13,7 @@
 
 Route::prefix('guru')->middleware(['auth', 'guru'])->group(function () {
     Route::get('beranda', 'GuruController@beranda');
+    Route::resource('kelas', 'GuruKelasController',['as'=>'guru']);
 });
 Route::prefix('siswa')->middleware(['auth', 'siswa'])->group(function () {
     Route::get('beranda', 'SiswaController@beranda');

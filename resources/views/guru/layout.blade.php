@@ -42,7 +42,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item {{request()->is('*guru/beranda')? 'active':''}}">
                 <a class="nav-link" href="{{ url('guru/beranda', []) }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Beranda</span></a>
@@ -53,11 +53,11 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Pelajaran
             </div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('guru/beranda', []) }}">
+            <li class="nav-item {{request()->is('guru/kelas*')? 'active':''}}">
+                <a class="nav-link" href="{{ url('guru/kelas', []) }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Kelas</span></a>
             </li>
@@ -278,10 +278,16 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                 {{ __('Logout') }}
+                             </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
                             </div>
                         </li>
 
