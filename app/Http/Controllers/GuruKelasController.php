@@ -12,7 +12,7 @@ class GuruKelasController extends Controller
         $data['model'] = Model::latest()->get();
         return view('guru.kelas_index',$data);
    }
-   public function create();
+   public function create()
    {
        $data ['model']= new Model();
        $data['method']='POST';
